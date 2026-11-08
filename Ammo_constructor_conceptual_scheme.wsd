@@ -1,0 +1,41 @@
+@startuml  ammo_constructor_conceptual_scheme
+
+skinparam linetype ortho
+skinparam nodesep 80
+skinparam ranksep 80
+hide circle
+hide members
+
+'Сущности
+entity "Гильза" as cartridge_case
+entity "Снаряд" as projectile
+entity "Порох" as powder
+entity "Капсюль" as primer
+entity "Пыж/Контейнер/Пыж-контейнер" as wad_n_cup
+entity "Производитель" as manufacturer
+entity "Сборка патрона" as ammo_build
+entity "Пользователь" as user
+entity "Пост/Тред" as thread
+entity "Комментарий" as comment
+
+
+
+'Связи
+cartridge_case }o--|| manufacturer
+projectile }o--|| manufacturer
+powder }o--|| manufacturer
+primer }o--|| manufacturer
+wad_n_cup }o--|| manufacturer
+ammo_build }o--|| user
+ammo_build }o--|| cartridge_case
+ammo_build }o--|| projectile
+ammo_build }o--|| powder
+ammo_build }o--|| primer
+ammo_build }o--|| wad_n_cup
+thread }o--|| user
+thread }o--|| ammo_build
+comment }o--|| user
+comment }o--|| thread
+comment }o--|| comment : "Рекурсия ответов"
+
+@enduml
